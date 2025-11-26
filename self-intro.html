@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>김민수 | Crafted for People</title>
+    <style>
+      :root {
+        font-family: "SF Pro Display", "SF Pro Text", "Pretendard", -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #f5f5f7;
+        --ink: #1d1d1f;
+        --ink-sub: #6e6e73;
+        --panel-light: #ffffff;
+        --panel-dark: #000000;
+        --shadow-soft: 0 25px 45px rgba(0, 0, 0, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(245, 245, 247, 0.9);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .nav {
+        width: min(1100px, 92vw);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--ink-sub);
+        padding: 6px 0;
+      }
+
+      .nav a.active {
+        color: var(--ink);
+        border-bottom: 2px solid var(--ink);
+      }
+
+      main {
+        width: min(1100px, 92vw);
+        margin: 0 auto 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .hero {
+        background: #000;
+        color: #fff;
+        border-radius: 30px;
+        padding: clamp(40px, 10vw, 88px) clamp(24px, 8vw, 96px);
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .profile {
+        width: clamp(120px, 14vw, 160px);
+        height: clamp(120px, 14vw, 160px);
+        border-radius: 50%;
+        margin: 0 auto 24px;
+        border: 4px solid rgba(255, 255, 255, 0.35);
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 60%);
+      }
+
+      .profile img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 7vw, 82px);
+        font-weight: 600;
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        margin-top: 18px;
+        font-size: clamp(18px, 2.2vw, 26px);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero .cta {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        font-size: 15px;
+      }
+
+      .hero button {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 26px;
+        font-weight: 600;
+        background: #fff;
+        color: #000;
+        cursor: pointer;
+      }
+
+      .hero button.secondary {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .section {
+        border-radius: 30px;
+        padding: 50px clamp(24px, 6vw, 70px);
+        background: var(--panel-light);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .section.dark {
+        background: linear-gradient(135deg, #111113, #1c1c21);
+        color: #fff;
+      }
+
+      .section h2 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 18px;
+      }
+
+      .section p.lead {
+        color: var(--ink-sub);
+        font-size: 20px;
+      }
+
+      .section.dark p.lead {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .card {
+        border-radius: 24px;
+        padding: 26px;
+        background: #f8f8fa;
+      }
+
+      .section.dark .card {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .card ul {
+        list-style: none;
+        display: grid;
+        gap: 6px;
+        color: var(--ink-sub);
+        font-size: 16px;
+      }
+
+      .section.dark .card ul {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 26px;
+        margin-top: 36px;
+      }
+
+      .timeline-item {
+        border-radius: 20px;
+        padding: 22px 26px;
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      .section.dark .timeline-item {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .timeline-item span {
+        font-size: 15px;
+        color: var(--ink-sub);
+      }
+
+      .section.dark .timeline-item span {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .panels {
+        display: grid;
+        gap: 24px;
+      }
+
+      .panel {
+        border-radius: 30px;
+        padding: 60px clamp(24px, 6vw, 80px);
+        color: #fff;
+        text-align: center;
+      }
+
+      .panel h3 {
+        font-size: clamp(34px, 5vw, 60px);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .panel p {
+        font-size: clamp(18px, 2vw, 24px);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      footer {
+        text-align: center;
+        color: var(--ink-sub);
+        font-size: 15px;
+        padding-bottom: 60px;
+      }
+
+      @media (max-width: 720px) {
+        .hero .cta {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <strong>Kim Min-Soo</strong>
+        <div>
+          <a href="#hero" class="active">Overview</a>
+          <a href="#focus">Focus</a>
+          <a href="#experience">Experience</a>
+          <a href="#roadmap">Roadmap</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <figure class="profile">
+          <img src="P.png" alt="김민수 프로필 사진" />
+        </figure>
+        <p>Inspired by people. Crafted with code.</p>
+        <h1>사용자가 사랑하는 경험을 설계하는 개발자.</h1>
+        <p>컴퓨터공학 전공 · 스타트업 2년 · 문제 해결에 집착하는 풀스택 메이커 김민수입니다.</p>
+        <div class="cta">
+          <button>이력서 보기</button>
+          <button class="secondary">프로젝트 아카이브</button>
+        </div>
+      </section>
+
+      <section class="section" id="focus">
+        <h2>지원 동기 & 강점</h2>
+        <p class="lead">
+          혁신적인 개발 문화를 가진 팀에서 사용자 중심 가치를 극대화하고, 빠른 실험과 반복으로 의미 있는
+          제품 임팩트를 만드는 것이 목표입니다.
+        </p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>저를 움직이는 이유</h3>
+            <p>
+              사용자 경험을 개선하는 솔루션을 찾을 때 가장 큰 에너지를 얻습니다. 귀사의 제품에 저의 UX 감각과
+              실행력을 더해 실제 고객이 체감하는 변화를 만들고 싶습니다.
+            </p>
+          </article>
+          <article class="card">
+            <h3>제가 제공하는 가치</h3>
+            <ul>
+              <li>끊임없는 학습으로 최신 기술을 빠르게 흡수</li>
+              <li>직군 간 언어를 번역하는 협업형 커뮤니케이션</li>
+              <li>문제를 끝까지 추적하며 해결하는 집요함</li>
+              <li>완벽주의를 통제하는 우선순위 기반 실행력</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section dark" id="philosophy">
+        <h2>철학</h2>
+        <p class="lead">“기술은 사람을 위해 존재한다.”</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>생활 신조</h3>
+            <p>
+              화려한 기술보다 사용자가 실제로 편리함을 느끼는지에 집중합니다. 문제를 사용자 관점에서 다시 정의하고,
+              효율적인 업무 경험으로 연결될 때 비로소 기술이 의미 있다고 믿습니다.
+            </p>
+          </article>
+          <article class="card">
+            <h3>협업 방식</h3>
+            <p>
+              디자이너, 기획자, 동료 개발자와 목표를 명확히 나누고 실행 과정을 투명하게 공유합니다.
+              후배 멘토링 경험으로 복잡한 개념을 쉽게 설명하는 능력 역시 갖추고 있습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <h2>주요 경험</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>스타트업 웹 개발자 · 2년</h3>
+            <span>사용자 피드백을 기반으로 한 빠른 개선 사이클</span>
+            <p>
+              프론트와 백엔드를 넘나들며 웹 서비스를 운영했습니다. 반복되는 실험과 지표 분석을 통해
+              사용자 경험을 개선하고 비즈니스 목표를 동시 달성했습니다.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <h3>지역 상권 활성화 앱 · 해커톤 우수상</h3>
+            <span>48시간 안에 React Native 풀스택 완성</span>
+            <p>
+              팀장을 맡아 API 설계부터 UI까지 전 과정을 주도했습니다. 짧은 시간 내에도 팀원의 역량을 읽고 역할을
+              분배하는 리더십을 증명했습니다.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <h3>컴퓨터공학 학회 멘토 · 4년</h3>
+            <span>복잡한 개념을 쉽게 설명하는 커뮤니케이션</span>
+            <p>
+              학회에서 후배들에게 프로그래밍을 가르치며 지식을 구조화하는 능력을 키웠고, 이는 현재 코드 리뷰와
+              기술 공유 문화에 그대로 적용하고 있습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap">
+        <h2>입사 후 로드맵</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>단기 · Alignment</h3>
+            <p>
+              팀 문화와 도메인을 빠르게 흡수하고, 맡은 업무를 안정적으로 완수해 신뢰를 쌓습니다. 코드 컨벤션과
+              협업 도구에 즉시 동화되어 생산성을 끌어올립니다.
+            </p>
+          </article>
+          <article class="card">
+            <h3>중기 · Elevation</h3>
+            <p>
+              사용자 중심 기능을 고도화하고 개발 프로세스를 개선합니다. 지표 중심의 의사결정으로 서비스 품질을
+              높이며, 팀 내 지식 공유를 주도합니다.
+            </p>
+          </article>
+          <article class="card">
+            <h3>장기 · Leadership</h3>
+            <p>
+              클라우드·마이크로서비스 전문성을 확장하고 기술 리더로 성장합니다. 주니어 개발자를 멘토링하며,
+              새로운 기술 도입과 조직의 기술 방향성을 리드하겠습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <div class="panels">
+        <article class="panel" style="background: linear-gradient(120deg, #050505, #1c1c1c)">
+          <h3>당신의 다음 제품, 김민수가 만듭니다.</h3>
+          <p>사용자를 깊이 이해하고 실행 속도를 유지하는 개발자를 찾고 있다면, 지금 바로 연결해 주세요.</p>
+        </article>
+        <article class="panel" style="background: linear-gradient(120deg, #0045ff, #6c00ff)">
+          <h3>Ready for what’s next.</h3>
+          <p>언제든 포트폴리오와 상세 레퍼런스를 공유할 준비가 되어 있습니다.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer>© 2025 Kim Min-Soo. All rights reserved.</footer>
+
+    <script>
+      const navLinks = document.querySelectorAll(".nav a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+          const target = document.querySelector(link.getAttribute("href"));
+          target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    </script>
+  </body>
+</html>
+
